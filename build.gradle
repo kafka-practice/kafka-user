@@ -28,14 +28,21 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
+	// msa 로깅 jaeger 설정
 	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
 	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
 
+	// DB 설정
 	runtimeOnly 'org.postgresql:postgresql'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+	// MapStruct 설정
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	// kafka 설정
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '3.8.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
