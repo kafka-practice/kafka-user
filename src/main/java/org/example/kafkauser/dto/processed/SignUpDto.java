@@ -1,12 +1,12 @@
-package org.example.kafkauser.dto.refined;
+package org.example.kafkauser.dto.processed;
 
 import lombok.*;
 import org.example.kafkauser.dto.controller.user.save.request.UsersSignUpRequestDto;
 
-@Getter
-@Builder
+@Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE) // 생성자의 접근 제어자를 private으로 설정
+@Builder
 public class SignUpDto {
     private String name;
     private String email;

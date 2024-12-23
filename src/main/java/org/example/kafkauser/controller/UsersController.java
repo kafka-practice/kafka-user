@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.example.kafkauser.dto.controller.ApiResponse;
 import org.example.kafkauser.dto.controller.user.save.request.UsersSignUpRequestDto;
 import org.example.kafkauser.dto.controller.user.save.response.UsersSignUpResponseDto;
-import org.example.kafkauser.dto.refined.SignUpDto;
+import org.example.kafkauser.dto.processed.SignUpDto;
 import org.example.kafkauser.port.in.AuthUseCase;
+import org.example.kafkauser.service.user.UsersSignUpService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ public class UsersController {
     ) {
         SignUpDto signUpDto = SignUpDto.of(usersSignUpRequestDto);
         UsersSignUpResponseDto usersSignUpResponseDto = authUseCase.signUp(signUpDto);
+
         return ResponseEntity.ok(ApiResponse.success(usersSignUpResponseDto));
     }
 }

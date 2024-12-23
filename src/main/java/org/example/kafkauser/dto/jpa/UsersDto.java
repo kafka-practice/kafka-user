@@ -1,23 +1,17 @@
 package org.example.kafkauser.dto.jpa;
 
 import lombok.*;
+import org.example.kafkauser.dto.processed.SignUpDto;
 
-@Data
-@Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UsersDto {
     private Long userId;
     private String name;
     private String email;
     private String password;
     private String nickname;
-    private boolean useYn;
-
-
-    public static UsersDto of(long id) {
-        return UsersDto.builder()
-                .userId(id)
-                .build();
-    };
-}
+ }

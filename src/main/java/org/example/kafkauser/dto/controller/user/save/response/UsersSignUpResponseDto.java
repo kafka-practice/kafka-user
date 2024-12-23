@@ -1,14 +1,17 @@
 package org.example.kafkauser.dto.controller.user.save.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class UsersSignUpResponseDto {
     private Long userId;
+
+    public static UsersSignUpResponseDto of(Long userId) {
+        return UsersSignUpResponseDto.builder()
+                .userId(userId)
+                .build();
+    }
 }
