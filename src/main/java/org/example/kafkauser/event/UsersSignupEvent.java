@@ -8,7 +8,7 @@ import org.example.kafkauser.event.outbox.OutboxEvent;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsersCreateEvent implements OutboxEvent {
+public class UsersSignupEvent implements OutboxEvent {
     private Long payload;
 
     @Override
