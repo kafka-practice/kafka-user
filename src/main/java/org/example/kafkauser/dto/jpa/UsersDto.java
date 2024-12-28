@@ -14,4 +14,10 @@ public class UsersDto {
     private String email;
     private String password;
     private String nickname;
+
+    public static UsersDto of(long userId) {
+        return UsersDto.builder()
+                .userId(userId)
+                .build();
+    }
  }

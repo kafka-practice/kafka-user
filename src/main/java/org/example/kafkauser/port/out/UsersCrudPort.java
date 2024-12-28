@@ -5,4 +5,5 @@ import org.example.kafkauser.dto.jpa.UsersDto;
 public interface UsersCrudPort {
     UsersDto signUp(UsersDto usersDto);
     boolean existsByEmail(UsersDto usersDto);
+    UsersDto findByUserId(UsersDto usersDto);
 }

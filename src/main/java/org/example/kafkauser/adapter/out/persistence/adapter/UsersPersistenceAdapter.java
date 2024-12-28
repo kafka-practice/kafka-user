@@ -1,5 +1,6 @@
 package org.example.kafkauser.adapter.out.persistence.adapter;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.kafkauser.adapter.out.persistence.entity.UsersEntity;
 import org.example.kafkauser.common.annotation.PersistenceAdapter;
@@ -27,5 +28,14 @@ public class UsersPersistenceAdapter implements UsersCrudPort {
     @Override
     public boolean existsByEmail(UsersDto usersDto) {
         return usersRepository.existsByEmail(usersDto.getEmail());
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public UsersDto findByUserId(UsersDto usersDto) {
+        UsersEntity usersEntity = usersMapper.toEntity(usersDto);
+        UsersEntity findEntity = usersRepository.findByUserId(usersEntity.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found by userId : "+usersEntity.getUserId()));
+        return usersMapper.toDto(findEntity);
     }
 }

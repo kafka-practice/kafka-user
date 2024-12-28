@@ -1,4 +1,4 @@
-package org.example.kafkauser.common.config;
+package org.example.kafkauser.common.config.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
