@@ -10,7 +10,7 @@ Kafka MSA 구현의 시작점인 kafka-user 프로젝트입니다.<br>
 
 1. 사용자 회원가입
 2. Event 발행
-3. Outbox 저장 및 Kafka 메시지 발행
+3. Outbox Entity 저장 및 Kafka 메시지 발행
 4. 발행한 Kafka 메시지를 내부적으로 소비하여 정상 작동 확인 및 Outbox Processed 처리
 5. Consumer 측(다른 MSA)에서 gRPC를 통해 데이터 확인 시, <br>
    Outbox Success 처리하여 데이터 동기화 종료
