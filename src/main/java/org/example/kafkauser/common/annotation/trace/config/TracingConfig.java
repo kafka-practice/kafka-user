@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
  * */
 @Configuration
 public class TracingConfig {
-    @Value("${opentelemetry.tracer.exporter.otlp.endpoint}")
-    private String url;
+//    @Value("${opentelemetry.tracer.exporter.otlp.endpoint}")
+//    private String url;
 
     @Value("${otel.resource.attributes.service.name}")
     private String serviceName;
@@ -33,9 +33,9 @@ public class TracingConfig {
     public OpenTelemetry openTelemetry() {
         // OtlpHttpSpanExporter 객체를 생성하여 OTLP HTTP 엔드포인트에 데이터 전송 설정.
         // `url`은 OTLP Collector 엔드포인트 주소.
-        OtlpHttpSpanExporter spanExporter = OtlpHttpSpanExporter.builder()
-                .setEndpoint(url) // OTLP HTTP 수집기가 위치한 URL을 설정합니다.
-                .build();
+//        OtlpHttpSpanExporter spanExporter = OtlpHttpSpanExporter.builder()
+//                .setEndpoint(url) // OTLP HTTP 수집기가 위치한 URL을 설정합니다.
+//                .build();
 
         // SdkTracerProvider 생성. 이는 OpenTelemetry SDK 의 트레이싱 구성 요소로, SpanProcessor와 리소스를 설정.
         SdkTracerProvider tracerProvider = SdkTracerProvider.builder()
