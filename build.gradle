@@ -43,6 +43,7 @@ dependencies {
 	// DB 설정
 	runtimeOnly 'org.postgresql:postgresql'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.hibernate:hibernate-core:6.5.2.Final'
 
 	// MapStruct 설정
 	compileOnly 'org.projectlombok:lombok'
