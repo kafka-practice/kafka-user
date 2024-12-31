@@ -8,7 +8,6 @@ application-local.yml
 application-test.yml
 kafka-keystore.jks
 kafka-truststore.jks
-logback-spring.xml
 
 ### STS ###
 .apt_generated
