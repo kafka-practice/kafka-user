@@ -23,12 +23,6 @@ public class KafkaConsumerConfig {
     @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServers;
 
-    @Value("${spring.kafka.consumer.enable-auto-commit}")
-    private boolean enableAutoCommit;
-
-    @Value("${spring.kafka.consumer.auto-offset-reset}")
-    private String autoOffsetReset;
-
     @Value("${spring.kafka.properties.security.protocol}")
     private String securityProtocol;
 
@@ -44,18 +38,10 @@ public class KafkaConsumerConfig {
     @Value("${spring.kafka.properties.ssl.truststore.password}")
     private String truststorePassword;
 
-    @Value("${spring.kafka.properties.ssl.keystore.location}")
-    private String keystoreLocation;
-
-    @Value("${spring.kafka.properties.ssl.keystore.password}")
-    private String keystorePassword;
-
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, enableAutoCommit);
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
@@ -64,8 +50,6 @@ public class KafkaConsumerConfig {
         props.put("sasl.jaas.config", saslJaasConfig);
         props.put("ssl.truststore.location", truststoreLocation);
         props.put("ssl.truststore.password", truststorePassword);
-        props.put("ssl.keystore.location", keystoreLocation);
-        props.put("ssl.keystore.password", keystorePassword);
 
         return new DefaultKafkaConsumerFactory<>(props);
     }

@@ -31,24 +31,34 @@ public class TracingConfig {
     * */
     @Bean
     public OpenTelemetry openTelemetry() {
+        // OtlpHttpSpanExporter 객체를 생성하여 OTLP HTTP 엔드포인트에 데이터 전송 설정.
+        // `url`은 OTLP Collector 엔드포인트 주소.
         OtlpHttpSpanExporter spanExporter = OtlpHttpSpanExporter.builder()
-                .setEndpoint(url)
+                .setEndpoint(url) // OTLP HTTP 수집기가 위치한 URL을 설정합니다.
                 .build();
 
+        // SdkTracerProvider 생성. 이는 OpenTelemetry SDK 의 트레이싱 구성 요소로, SpanProcessor와 리소스를 설정.
         SdkTracerProvider tracerProvider = SdkTracerProvider.builder()
                 .setResource(Resource.create(io.opentelemetry.api.common.Attributes.of(
+                        // 서비스의 이름을 설정하여 각 Span에 서비스 정보를 포함시킴
                         ResourceAttributes.SERVICE_NAME, serviceName)))
-                .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
+                // BatchSpanProcessor를 추가하여 Span을 일괄 처리하고 `spanExporter`로 전송.
+//                .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
                 .build();
 
+        // OpenTelemetrySdk 객체 생성. 이를 통해 OpenTelemetry 추적 및 컨텍스트 전파 기능 구성.
         OpenTelemetrySdk openTelemetrySdk = OpenTelemetrySdk.builder()
+                // 위에서 생성한 tracerProvider 설정하여 트레이싱 활성화.
                 .setTracerProvider(tracerProvider)
+                // W3C Trace Context Propagator 설정하여 컨텍스트 전파 지원.
                 .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
                 .build();
 
+        // 전역 OpenTelemetry 객체 설정.
         GlobalOpenTelemetry.set(openTelemetrySdk);
 
         return openTelemetrySdk;
+
     }
 
 }

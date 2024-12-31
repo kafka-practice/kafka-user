@@ -13,3 +13,28 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  # Kafka 설정
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVER}
+    admin:
+      fail-fast: true
+    producer:
+      bootstrap-servers: ${BOOTSTRAP_SERVER}
+    consumer:
+      bootstrap-servers: ${BOOTSTRAP_SERVER}
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-512
+      sasl.jaas.config: ${JAAS_CONFIG}
+      ssl:
+        truststore:
+          location: ${TRUSTSTORE_LOCATION}
+          password: ${TRUSTSTORE_PASSWORD}
+        protocol: TLSv1.3
+
+# msa 로깅 설정 Jaeger
+otel:
+  resource:
+    attributes:
+      service.name: ${SERVICE_NAME}

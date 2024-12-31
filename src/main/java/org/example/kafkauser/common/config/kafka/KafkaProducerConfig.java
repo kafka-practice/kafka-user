@@ -38,12 +38,6 @@ public class KafkaProducerConfig {
     @Value("${spring.kafka.properties.ssl.truststore.password}")
     private String truststorePassword;
 
-    @Value("${spring.kafka.properties.ssl.keystore.location}")
-    private String keystoreLocation;
-
-    @Value("${spring.kafka.properties.ssl.keystore.password}")
-    private String keystorePassword;
-
     /*
      * Kafka 프로듀서 팩토리를 설정합니다.
      * 이 팩토리는 Kafka 브로커에 메시지를 전송하는 프로듀서를 생성하는 데 사용됩니다.
@@ -70,8 +64,6 @@ public class KafkaProducerConfig {
         configProps.put("sasl.jaas.config", saslJaasConfig);
         configProps.put("ssl.truststore.location", truststoreLocation);
         configProps.put("ssl.truststore.password", truststorePassword);
-        configProps.put("ssl.keystore.location", keystoreLocation);
-        configProps.put("ssl.keystore.password", keystorePassword);
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }
@@ -102,21 +94,21 @@ public class KafkaProducerConfig {
         return new RetryTemplate();
     }
 
+////
+//    @Bean
+//    public Producer<String, String> kafkaProducer() {
+//        Properties props = new Properties();
+//        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        props.put("security.protocol", securityProtocol);
+//        props.put("sasl.mechanism", saslMechanism);
+//        props.put("sasl.jaas.config", saslJaasConfig);
+//        props.put("ssl.truststore.location", truststoreLocation);
+//        props.put("ssl.truststore.password", truststorePassword);
+////        props.put("ssl.keystore.location", keystoreLocation);
+////        props.put("ssl.keystore.password", keystorePassword);
 //
-    @Bean
-    public Producer<String, String> kafkaProducer() {
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put("security.protocol", securityProtocol);
-        props.put("sasl.mechanism", saslMechanism);
-        props.put("sasl.jaas.config", saslJaasConfig);
-        props.put("ssl.truststore.location", truststoreLocation);
-        props.put("ssl.truststore.password", truststorePassword);
-        props.put("ssl.keystore.location", keystoreLocation);
-        props.put("ssl.keystore.password", keystorePassword);
-
-        return new KafkaProducer<>(props);
-    }
+//        return new KafkaProducer<>(props);
+//    }
 }
