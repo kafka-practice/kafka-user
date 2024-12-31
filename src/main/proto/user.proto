@@ -14,7 +14,7 @@ message UsersIdRequest {
 message UsersRetrieveResponse {
   int64 userId = 1;
   string name = 2;
-  string username = 3;
+  string nickname = 3;
   string email = 4;
   string password = 5;
 }
