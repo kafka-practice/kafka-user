@@ -51,5 +51,4 @@ public class UsersGrpcServiceAdapter extends UserServiceGrpc.UserServiceImplBase
             throw e; // 예외를 다시 던져, AOP 에서 처리되도록 함.
         }
     }
-
 }

@@ -30,17 +30,17 @@ public class InternalKafkaListener {
 //                    topic = "users-signup-outbox",
 //                    partitions = {"0", "1" ,"2"} // 특정 파티션 선택
 //            ),
-            groupId = "my-group",
+            groupId = "user-group-user-signup",
             containerFactory = "kafkaListenerContainerFactory"
     )
     public void listenInternalUsersSignup(
-            ConsumerRecord<String, String> consumerRecord,
+            ConsumerRecord<String, String> record,
             Acknowledgment acknowledgment,
             @Header(KafkaHeaders.RECEIVED_PARTITION) int partition,
             @Header(KafkaHeaders.OFFSET) long offset
     ) throws JsonProcessingException {
         // 1. Record 값을 이벤트 객체로 변환
-        String jsonValue = consumerRecord.value();
+        String jsonValue = record.value();
         System.out.println(jsonValue);
         OutboxEvent event = objectMapper.readValue(jsonValue, UsersSignupEvent.class);
 
