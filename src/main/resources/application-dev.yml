@@ -39,3 +39,9 @@ otel:
   resource:
     attributes:
       service.name: ${SERVICE_NAME}
+
+grpc:
+  server:
+    port: 9090
+    security:
+      enabled: false
