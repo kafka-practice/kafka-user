@@ -40,6 +40,14 @@ otel:
     attributes:
       service.name: ${SERVICE_NAME}
 
+
+opentelemetry:
+  tracer:
+    exporter:
+      otlp:
+        endpoint: ${OTEL_ENDPOINT}
+        protocol: ${OTEL_PROTOCOL}
+
 grpc:
   server:
     port: 9090
